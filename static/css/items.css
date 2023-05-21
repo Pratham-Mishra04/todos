@@ -1,0 +1,38 @@
+.card{
+    display: inline-block;
+    margin: 2vw;
+    transition: 0.5s;
+}
+.card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn{
+    display: inline-block;
+    border: 1px black solid;
+}
+.button{
+    display: inline-block;
+}
+.btn-danger{
+    margin-left: 8vh;
+}
+#heading{
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+    font-size: 8vh;
+}
+.navbar-brand{
+    margin-left: 1vw;
+}
+#empty_heading{
+    margin-top: 20vh;
+    margin-bottom: 2vh;
+    font-size: 10vh;
+}
+.container{
+    text-align: center;
+}
+.card-subtitle{
+    font-family: 'Cuprum', sans-serif;
+}

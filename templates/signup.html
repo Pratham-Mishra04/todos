@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cuprum:wght@600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href={% static 'css/singup.css' %}>
+    <style>
+        .container{
+            background-color: black;
+            color: white;
+            transition: all 0.5s ease-out;
+        }
+        .container:hover{
+            border: 2px solid white;
+            box-shadow: 10px 10px black;
+            height: 86vh;
+            width: 27.5vw;
+        }
+        body{
+            background-color: rgb(214, 214, 214);
+        }
+        .login{
+            width: 50vw;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            gap: 5vh;
+        }
+        .box{
+            width: 45vw;
+            height: 40vh;
+            background-color: rgb(0, 0, 0);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4vh;
+            transition: all 0.5s ease-out;
+        }
+        .box2{
+            width: 45vw;
+            height: 40vh;
+            background-color: rgb(0, 0, 0);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4vh;
+            transition: all 0.5s ease-out;
+        }
+        .box:hover{
+            border: 2px solid white;
+            box-shadow: 10px 10px black;
+            height: 41vh;
+            width: 45.5vw;
+        }
+        .box2:hover{
+            border: 2px solid white;
+            box-shadow: 10px -10px black;
+            height: 41vh;
+            width: 45.5vw;
+        }
+        .cardhead{
+            font-family: 'Cuprum';
+            font-size: 50px;
+            color: white;
+        }
+        .tail{
+            color: white;
+            font-family: 'Cuprum';
+            font-size: 25px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="head">TODOs</div>
+            <div class="below">Create Account</div>
+        </div>
+
+        <form action="/acc_created/" method="post"> 
+            {% csrf_token %}
+
+            Name:
+            <br>
+            <div class="name">   
+                <input type="text" placeholder="First Name" name="fname">
+                <input type="text" placeholder="Last Name" name="lname">
+            </div>
+
+                Create Username:
+                <br>
+                <input type="text" placeholder="Username" name="username">
+
+                Email Address:
+                <br>
+                <input type="email" placeholder="Email" name="email">
+
+                Create Password:
+                <br>
+                <input type="password" placeholder="Password" name="password">
+                Confirm Password:
+                <br>
+                <input type="password" placeholder="Password" name="cpassword">
+            
+                <input type="submit" id="submit" value="Create Account">
+        </form>
+    </div>
+
+    <div class="login">
+        <div class="box">
+            <div class="cardhead">
+                Already Have an Account?
+            </div>
+            <div class="tail">
+                <a href="/login" style="color: white;">Log into your Account from Here!</a> 
+            </div>
+        </div>
+
+        <div class="box2">
+            <div class="cardhead">
+                Having trouble signing in?
+            </div>
+            <div class="tail">
+                Checkout our Help and FAQ Forum Here!
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

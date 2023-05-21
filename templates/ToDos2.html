@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cuprum:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MiniProject-10</title>
+    <link rel="stylesheet" href="{% static 'css/ToDos2.css' %}" />
+    <style>
+      .user{
+        color: white;
+        float: right; 
+        margin: 10px;
+        margin-right: 15px;
+        height: 50px;
+        font-family: 'Cuprum', sans-serif;
+        font-size: 20px;
+      }
+      .startpage_text{
+        text-align: center;
+        font-size: 4vw;
+        font-family: 'Saira Condensed', sans-serif;
+      }
+      #add{
+        background-color: black;
+        color: white;
+      }
+      ::-webkit-scrollbar{
+      width: 5px;
+      }
+      ::-webkit-scrollbar-track{
+      background-color: rgb(226, 226, 226);
+      }
+      ::-webkit-scrollbar-thumb {
+      background: rgb(0, 0, 0);
+      }
+      .header{
+        margin-bottom: 5vh;
+      }
+    </style>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-inverse" style="position:fixed; width:100vw;">
+      <a class="navbar-brand" style="color: white">{{request.user}}</a>
+      <ul class="nav navbar-nav">
+        <li><a href="profile/">Profile</a></li>
+        <li><a href="items/">Items</a></li>
+        <li><a href="logout/">Log Out</a></li>
+      </ul>
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-inverse">
+      <a class="navbar-brand" style="color: white">TODOs</a>
+      <ul class="nav navbar-nav">
+        <li><a href="login/">Log In</a></li>
+        <li><a href="signin/">Create Account</a></li>
+      </ul>
+    </nav>
+    {% endif %}
+
+    <div class="container">
+      <div class="header">
+        <h3 id="heading">TODOs</h3>
+        <h4>A <strong>Backend</strong> Project.</h4>
+      </div>
+      {% if user.is_authenticated %}
+      <form action="additem/" method="post">
+        {% csrf_token %}
+        <label for="title">Title:*</label><br />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          class="form-control intext"
+          maxlength="30"
+          required
+        /><br />
+        <p></p>
+        <label for="description">Description:</label><br />
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="2"
+          class="form-control intext"
+          maxlength="100"
+        ></textarea
+        >
+        <p style="margin-top: 4vh; margin-bottom: 4vh;">
+          <label for="day" style="margin-right: 2vh;">Due On:*</label>
+          <input type="time" name="time" id="" required>
+          <input type="date" name="date" id="" required>
+          <label for="description" style="float: right; font-size: 15px;">*Required</label> <br>
+        </p>
+        <input
+          class="btn btn-light btn-lg"
+          id="add"
+          type="submit"
+          role="button"
+          value="Add to List"
+        />
+        <h2 class="text-muted">Items will be added to your Items Tab!</h2>
+      </form>
+      {% else %}
+      <p class="startpage_text"><strong>Login to Enter your TODOs!</strong></p>
+      {% endif %}
+    </div>
+
+    <script src="{% static 'js/ToDos2.js' %}"></script>
+  </body>
+</html>

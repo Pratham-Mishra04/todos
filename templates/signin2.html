@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signin</title>
+    <style>
+      .container {
+        margin-top: 10px;
+      }
+      #text {
+        margin-top: 40px;
+        margin-bottom: 0px;
+      }
+      .navbar {
+        border-radius: 0;
+        height: 7.5vh;
+      }
+
+      ul {
+        font-size: 2vh;
+      }
+      a {
+        margin-top: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-inverse" style="position:fixed; width:100vw;">
+      <a class="navbar-brand" style="color: white">TODOs</a>
+      <ul class="nav navbar-nav">
+        <li><a href="items/">Items</a></li>
+        <li><a href="logout/">Log Out</a></li>
+      </ul>
+      <div class="user">
+        Welcome {{request.user}}
+      </div>
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-inverse">
+      <a class="navbar-brand" style="color: white">TODOs</a>
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="signin/">Create Account</a></li>
+      </ul>
+    </nav>
+    {% endif %}
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Log In</h1>
+        <p></p>
+        <p id="text">Enter your Username and Password to Log In!</p>
+      </div>
+      <form action="hanglelogin/" method="post">
+        {% csrf_token %}
+        <label for="email">Username :</label><br />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username"
+          class="form-control"
+        /><br />
+        <p></p>
+        <label for="password">Password:</label><br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          class="form-control"
+        /><br />
+        <p></p>
+        <input type="checkbox" name="" id="checkbox" />
+        <label for="checkbox" style="font-weight: normal"
+          >Keep me Signed In</label
+        >
+        <p></p>
+        <input
+          type="submit"
+          name=""
+          id=""
+          value="Submit"
+          class="btn btn-light"
+          type="button"
+          style="width: 100px; font-size: 15px"
+        />
+      </form>
+    </div>
+  </body>
+</html>

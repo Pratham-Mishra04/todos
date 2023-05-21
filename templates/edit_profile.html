@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cuprum:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+        .text{
+            display: block;
+            overflow-y: auto;
+            font-size: 20px;
+        }
+        input{
+            display: inline-block;
+            height: 4vh;
+            font-size: 20px;
+            font-family: cuprum;
+        }
+        .username{
+            margin-top: 1vh;
+        }
+        .names{
+            margin-top: 4vh;
+        }
+        .email{
+            margin-top: 4vh;
+        }
+        .profile{
+            transition: all 0.5s ease-out;
+        }
+        .profile:hover{
+            border: 2px solid white;
+            box-shadow: 10px 10px;
+        }
+        .todos{
+            transition: all 0.5s ease-out;
+        }
+        .todos:hover{
+            border: 2px solid white;
+            box-shadow: 10px 10px;
+        }
+        .edit_profile{
+            transition: all 0.5s ease-out;
+        }
+        .edit_profile:hover{
+            height: 6vh;
+            width: 18.5vw;
+        }
+        ::-webkit-scrollbar{
+      width: 5px;
+      }
+      ::-webkit-scrollbar-track{
+      background-color: rgb(226, 226, 226);
+      }
+      ::-webkit-scrollbar-thumb {
+      background: rgb(172, 172, 172);
+      }
+    </style>
+</head>
+<body>
+
+    <div class="profile">
+        <form action="/profile/" method="post">
+            {% csrf_token %}
+        <div class="image_box">
+            <div class="image">
+
+            </div>
+            <div class="edit_profile">
+                <input type="submit" name="edit" id="" value="Save Profile">
+            </div>
+        </div>  
+        <div class="text">
+            <div class="username">
+                Username: {{request.user}} <br> (Cannot be Changed)
+            </div>
+            <div class="names">
+                <div class="first_name">
+                    First Name: <br> <input type="text" name="fname" id="" value="{{request.user.first_name}}">
+                </div>
+                <div class="last_name">
+                    Last Name: <br> <input type="text" name="lname" id="" value="{{request.user.last_name}}">
+                </div>
+            </div>
+            <div class="email">
+                Email Address: <br> <input type="email" name="email" id="" value="{{request.user.email}}">
+            </div>
+        </div>
+        </form>
+    </div>
+
+    {% if items|length == 0 %}
+        <div class="todos">
+            <div class="todo_head">
+                No TODOs to Display!
+            </div>
+            <div class="todo_items">
+                <div class="item_head">
+                    <div class="title">
+                        Add TODOs from Home Tab.
+                    </div>
+                </div>
+                <div class="item_body">
+                </div>
+            </div>
+        </div>
+    {% else %}
+    <div class="todos">
+        <div class="todo_head">
+            List of Your TODOs
+        </div>
+        <div class="todo_items">
+            <div class="item_head">
+                <div class="title" style="font-size: 30px;">
+                    Title
+                </div>
+                <div class="status" style="font-size: 30px;">
+                    Due Date
+                </div>
+                <div class="status" style="font-size: 30px;">
+                    Status
+                </div>
+            </div>
+            <div class="item_body">
+                {% for item in items %}
+                <div class="item">
+                    <div class="title">
+                        {{item.title}}
+                    </div>
+                    <div class="status">
+                        {{item.due_date}}
+                    </div>
+                    <div class="status">
+                        {{item.status}}
+                    </div>
+                </div>
+                {% endfor %}   
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>
